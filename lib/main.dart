@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jxb_test/bloc/bloc.dart';
 import 'package:jxb_test/screens/home/home.dart';
 import 'package:bloc/bloc.dart';
@@ -27,7 +28,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      routes: {MyHomePage.route: (context) => MyHomePage()},
-      home: MyHomePage(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('JXB Expression'),
+        ),
+        body: BlocProvider(
+          builder: (context) => HomeBloc()..add(InitHome()),
+          child: MyHomePage(),
+        ),
+      ),
     );
   }
 }
